@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { KeycloakProfile } from 'keycloak-js'
+import { KeycloakService } from 'keycloak-angular'
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Snuskriget';
+  userDetails: KeycloakProfile;
+
+  constructor(private keycloakService: KeycloakService) {}
+
+  async ngOnInit() {
+    if (await this.keycloakService.isLoggedIn()) {
+      this.userDetails = await this.keycloakService.loadUserProfile();
+    }
+  }
+
+  async doLogOut() {
+    await this.keycloakService.logout();
+  }
 }

@@ -1,2 +1,8 @@
 <h1>{{title}}</h1>
-<app-items></app-items>
+<nav>
+    <ul>
+      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+      <li><a routerLink="/items" routerLinkActive="active">Items</a></li>
+    </ul>
+  </nav>
+<router-outlet></router-outlet>
